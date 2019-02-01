@@ -1,14 +1,5 @@
 % Main_FDS_IKS
-% Written by C.Breitkreuz (last modified 31.01.2019)
-
-
-% Charlotte Breitkreuz , André Paul, Stefan Mulitza, and Michael Schulz
-% MARUM - Center for Marine Environmental Sciences and Faculty of
-%         Geosciences, University of Bremen, Bremen, Germany
-% "An efficient Kalman smoother method and state reduction approach
-% for (paleo-)ocean state estimation"
-
-
+% Written by C.Breitkreuz 
 
 % This skript
 % - reads the model output of the current simulation
@@ -16,24 +7,32 @@
 % - computes the new best guess parameters with the finite difference
 %   sensitivity-iterative Kalman smoother (FDS-IKS)
 % - computes the new forcing fields according to the state reduction
-%   approach described in Breitkreuz et al. (2019)
+%   approach
 
 
 % Below specify:
 % - the paths to the model output and ctrl parameters from the last iteration
-% - settings on ctrl parameters
+% - settings on ctrl parameters (example given)
 % - paths to observational/proxy data
+% - names of observational data files
+% - your run diretory
+% Specify grid directory and input directory in 
+% genPerturbedForcing_BASIN_LegendrePolynomial_fun.m 
+% and in getModelDataDiff_realLGM_SST_Anomalies_d18OAnomalies.m
+% (All of these spots are highlighted with <SPECIFY YOUR PATH HERE>
+% or <SPECIFY FILE NAME HERE>)
+
+
 
 % Before running this skript you need :
-% - to run the first iteration (iteration 0)
-% - to fill in paths to the model output and proxy data files
+% - to run the first model simulations (iteration 0)
 % - the files: rdmnc (available in the MITgcm model code) and legendrefit
 % (available via the Mathworks file exchange)
 
 %% general settings
 
 nextIteration = 10; % the last model simulation was "nextIteration - 1"
-ExpName = 'KF_LGM_Exp32';
+ExpName = 'LGM_Exp1';
 
 write2File = 0; % 1 or 0
 
@@ -162,17 +161,16 @@ end
 
 %%%%%%%%%%%%%%%%%% Pseudo-proxy experiment
 
-% targetFileOne = 'Target12_ThetaObservations_2deg.bin';
-% targetFileOneWeights = 1/2^2;
+% targetFileOne = <SPECIFY FILE NAME HERE>
+% targetFileOneWeights = 1/2^2; % 1/sigma^2, sigma = uncertainty of observational data 
 
-% targetFileTwo = 'Target12_d18OObservations_022deg.bin';
-% targetFileTwoWeights = 1/0.22^2;
+% targetFileTwo = <SPECIFY FILE NAME HERE>
+% targetFileTwoWeights = 1/0.22^2;  % 1/sigma^2, sigma = uncertainty of observational data 
 
-% targetName = 'Target12';
+% targetName = 'Target';
 
 % path to target observations
-% targetObsPath = '../Output/GeneratedObservations';
-% targetObsPath = '/m/raid1/home/cbreitkreuz/MITgcm_home/MITgcm_develop/global_ocean.cs32x15_newMethod/TargetObservations';
+% targetObsPath =  <SPECIFY YOUR PATH HERE>
 
 %%%%%%%%%%%%%%%%%% LGM experiment
 
@@ -183,14 +181,14 @@ targetFileTwoWeights = 'whatever';
 targetFileOne= 'whatever';
 targetFileOneWeights = 'whatever';
 
-targetName = 'realLGM';
+targetName = 'realLGM'; 
 
-targetPathD18O = '/m/raid1/home/cbreitkreuz/MITgcm_home/MITgcm_develop/ad_global_ocean.cs32x15_LGM/DATA/D18Oc_Anomalies_050718';
-targetPathSST = '/m/raid1/home/cbreitkreuz/MITgcm_home/MITgcm_develop/ad_global_ocean.cs32x15_LGM/DATA/MARGO_SST_040818';
+targetPathD18O = <SPECIFY YOUR PATH HERE>
+targetPathSST = <SPECIFY YOUR PATH HERE>
 %%%%%%%%%%%%%%%%%%
 
 % Choose path to model output of last iteration and for next iteration
-modelBasePath =['/mnt/wrk3/cbreitkreuz/MITgcm_exp/global_ocean.cs32x15_newMethod/',ExpName,'/'];
+modelBasePath =[<SPECIFY YOUR PATH HERE>,ExpName,'/'];
 
 OutputPath = [modelBasePath,ExpName,'_Iter',num2str(nextIteration)]; % for next iteration
 modelPath = [modelBasePath,ExpName,'_Iter',num2str(nextIteration-1)]; % last iteration
@@ -337,7 +335,7 @@ if write2File
     save('xFEns.mat','xFEns') % numberObs x ensSize x totalNumParams
     
     % change back to this directory
-    cd '/m/raid1/home/cbreitkreuz/MATLAB/myMATLAB/NewMethod/KalmanSmootherMethods'
+    cd <SPECIFY YOUR PATH HERE>
     
 end
 
