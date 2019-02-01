@@ -1,4 +1,4 @@
-# FDS-IKS
+# FDS-IKS and state reduction approach
 
 These MATLAB scripts implement the state reduction approach and finite difference sensitivity-iterative Kalman smoother for the cubed sphere (192x32) configuration of the MITgcm.
 
