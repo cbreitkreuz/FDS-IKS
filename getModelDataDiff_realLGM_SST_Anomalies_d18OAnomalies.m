@@ -21,7 +21,7 @@ PRef = 0;
 
 %% Read model grid - LGM
 
-gridDirectory = '/m/wrk3/cbreitkreuz/MITgcm_exp/global_ocean.cs32x15_LGM/run_LGM_wiso_2/mnc_output_all';
+gridDirectory = <SPECIFY YOUR PATH HERE> % path to LGM model grid
 
 
 grids = rdmnc(fullfile(gridDirectory, 'grid.*'));
@@ -40,7 +40,7 @@ mask_LGM(mask_LGM==0) = nan;
 
 %% Read Late holocene grid (C.Breitkreuz et al., 2018)
 
-gridDirectory = '/m/wrk3/cbreitkreuz/MITgcm_exp/global_ocean.cs32x15_newMethod/';
+gridDirectory = <SPECIFY YOUR PATH HERE> % path to LH model grid
 
 grids = rdmnc(fullfile(gridDirectory, 'grid.*'));
 hFacC = grids.HFacC;
@@ -55,8 +55,8 @@ mask = mask_LH .* mask_LGM;
 %% Read proxy data - SST LGM-L anomalies (on model grid)
 
 
-targetFileSST_Annual = 'MARGO_SST_Anomalies_Annual_cs.bin';
-targetFileSigma_Annual = 'MARGO_SST_Anomalies_SigmaAnnual_cs.bin';
+targetFileSST_Annual = <SPECIFY FILE NAME HERE>
+targetFileSigma_Annual = <SPECIFY FILE NAME HERE>
 
 SST_Annual_Anomalies = mit_readfield(fullfile(targetPathSST,targetFileSST_Annual), [192 32 15], 'real*8') .* mask;
 SIGMA_Annual = mit_readfield(fullfile(targetPathSST,targetFileSigma_Annual), [192 32 15], 'real*8') .* mask;
@@ -71,11 +71,11 @@ SIGMA_Annual(SIGMA_Annual==0)=nan;
 
 %% Read proxy data - d18O LGM-LH anomalies
 
-targetFile_Planktonicd18O = 'LGM_PLANKTONIC_D18OAnom_DATA_cs.bin';
-targetFileSigma_Planktonicd18O = 'LGM_PLANKTONIC_D18OAnom_ONESIGMA_cs.bin';
+targetFile_Planktonicd18O =<SPECIFY FILE NAME HERE>
+targetFileSigma_Planktonicd18O = <SPECIFY FILE NAME HERE>
 
-targetFile_Benthicd18O = 'LGM_BENTHIC_D18OAnom_cs.bin';
-targetFileSigma_Benthicd18O = 'LGM_BENTHIC_D18OAnom_ONESIGMA_cs.bin';
+targetFile_Benthicd18O = <SPECIFY FILE NAME HERE>
+targetFileSigma_Benthicd18O = <SPECIFY FILE NAME HERE>
 
 
 d18O_calciteAnomalie_Planktonic = mit_readfield(fullfile(targetPathD18O,targetFile_Planktonicd18O ), [192 32 15 ], 'real*8') .* mask;
@@ -97,7 +97,7 @@ SIGMA_calciteAnomalie_Benthic(SIGMA_calciteAnomalie_Benthic==0)=nan;
 
 %% Read d18O Late Holocene data set (C.Breitkreuz et al.,2018)
 
-modelDirectory_LH ='/m/wrk3/cbreitkreuz/MITgcm_exp/ad_global_ocean.cs32x15/MOD_newCost/run_ad_wiso_400_1_iter13_forwardTest_400years_2/mnc_output_all';
+modelDirectory_LH = <SPECIFY YOUR PATH HERE>
 
 % Read d18O Late Holocene
 vIter = rdmnc(fullfile(modelDirectory_LH, 'tracerDiag.*'), 'iter');
