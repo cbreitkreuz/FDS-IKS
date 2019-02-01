@@ -16,7 +16,7 @@
 % - paths to observational/proxy data
 % - names of observational data files
 % - your run diretory
-% Specify grid directory and input directory in 
+% Additionally, specify grid directory, input directory and filenames in 
 % genPerturbedForcing_BASIN_LegendrePolynomial_fun.m 
 % and in getModelDataDiff_realLGM_SST_Anomalies_d18OAnomalies.m
 % (All of these spots are highlighted with <SPECIFY YOUR PATH HERE>
