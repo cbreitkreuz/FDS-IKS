@@ -65,7 +65,7 @@ end
 
 %% Read model grid
 
-gridDirectory = '/m/wrk3/cbreitkreuz/MITgcm_exp/global_ocean.cs32x15_LGM/run_LGM_wiso_2/mnc_output_all';
+gridDirectory = <SPECIFY YOUR PATH HERE>
 
 grids = rdmnc(fullfile(gridDirectory, 'grid.*'));
 
@@ -78,7 +78,7 @@ Ny = size(xC, 2);
 
 %% Read original forcing fields
 
-inputDirectory = '/m/raid1/home/cbreitkreuz/MITgcm_home/MITgcm_develop/global_ocean.cs32x15_LGM/input_LGM_wiso';
+inputDirectory = <SPECIFY YOUR PATH HERE>
 
 % containing input fields for all different atmospheric forcings,i.e.
 % numFields
@@ -745,7 +745,8 @@ if write2File
     
     cd(OutputPath)
     save('parameters.mat','parametersOut')
-    cd /m/raid1/home/cbreitkreuz/MATLAB/myMATLAB/NewMethod/KalmanSmootherMethods
+    % back to current run directory
+    cd <SPECIFY YOUR PATH HERE>
     
 end
 
